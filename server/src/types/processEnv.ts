@@ -6,6 +6,7 @@ export interface IProcessEnv {
     DB_HOST: string;
     DB_PORT: number;
     NODE_ENV: 'development' | 'test' | 'production';
+    JWT_SECRET: string
 };
 
 declare global {

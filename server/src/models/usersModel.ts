@@ -1,9 +1,10 @@
-import { DataTypes } from 'sequelize'
-import { sequelize } from '../db'
+import { DataTypes, Optional, ModelDefined } from 'sequelize';
+import { sequelize } from '../db';
+import { IUsers } from '../types/databaseTypes';
 
-export const Users = sequelize.define(
-    'Users', {
+export type UserCreationAttributes = Optional<IUsers, 'id' | 'createdAt' | 'updatedAt'| 'last_login_time' | 'registration_time' | 'status'>;
 
+export const Users: ModelDefined<IUsers, UserCreationAttributes> = sequelize.define('Users', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -25,9 +26,15 @@ export const Users = sequelize.define(
         }
     },
 
+    password: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+
     last_login_time: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: true,
+        defaultValue: DataTypes.NOW
     },
 
     registration_time: {

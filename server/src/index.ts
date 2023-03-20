@@ -3,9 +3,16 @@ import express, { Express } from 'express';
 import { router } from './routes/index';
 import { sequelize } from './db';
 import { Users } from './models/usersModel';
+import cors from 'cors';
+import { errorHandler } from './middleware/errorHandler';
+import { ROUTES } from './types/consts/routes';
 
 const PORT = process.env.PORT || 5000;
-export const app: Express = express()
+export const app: Express = express();
+app.use(cors());
+app.use(express.json());
+app.use(ROUTES.PREFIX, router);
+app.use('*', errorHandler)
 
 const start = async () => {
     try {
@@ -26,5 +33,3 @@ const start = async () => {
 if (process.env.NODE_ENV !== 'test') {
     start();
 }
-
-app.use('', router);
