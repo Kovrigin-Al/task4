@@ -10,7 +10,7 @@
     "predev": "npm run build",
     "dev": "concurrently NODE_ENV=development \"npx tsc -w\" \"nodemon dist/index.js\"",
     "pretest": "npm run build",
-    "test": "NODE_ENV=test jest --detectOpenHandles"
+    "test": "NODE_ENV=test jest --detectOpenHandles --runInBand"
   },
   "author": "Aleksei Kovrigin kovrigin-alexy@yandex.ru",
   "license": "ISC",

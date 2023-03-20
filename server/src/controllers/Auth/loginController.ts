@@ -4,13 +4,13 @@ import { ICredentials } from "../../types/apiTypes";
 import { HTTP_STATUS } from "../../types/consts/httpStatuses";
 import { ErrorResponse } from "../errorController";
 import bcrypt from "bcrypt";
-import { IUsers } from "../../types/databaseTypes";
+import { IUser } from "../../types/databaseTypes";
 import { AuthController } from "./authController";
 import _ from 'lodash'
 
 export class LoginController {
 
-    static foundUser: IUsers | undefined;
+    static foundUser: IUser | undefined;
     static isPasswordCorrect: boolean;
     static req: Request<{}, {}, ICredentials>;
     static res: Response;
@@ -80,7 +80,7 @@ export class LoginController {
         });
     }
 
-    static #setFoundUser(user: IUsers | undefined) {
+    static #setFoundUser(user: IUser | undefined) {
         LoginController.foundUser = user;
     }
 

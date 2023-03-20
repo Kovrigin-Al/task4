@@ -1,10 +1,10 @@
 import { DataTypes, Optional, ModelDefined } from 'sequelize';
 import { sequelize } from '../db';
-import { IUsers } from '../types/databaseTypes';
+import { IUser } from '../types/databaseTypes';
 
-export type UserCreationAttributes = Optional<IUsers, 'id' | 'createdAt' | 'updatedAt'| 'last_login_time' | 'registration_time' | 'status'>;
+export type UserCreationAttributes = Optional<IUser, 'id' | 'createdAt' | 'updatedAt'| 'last_login_time' | 'registration_time' | 'status'>;
 
-export const Users: ModelDefined<IUsers, UserCreationAttributes> = sequelize.define('Users', {
+export const Users: ModelDefined<IUser, UserCreationAttributes> = sequelize.define('Users', {
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,

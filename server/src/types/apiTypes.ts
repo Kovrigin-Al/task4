@@ -1,4 +1,4 @@
-import { IUsers } from "./databaseTypes"
+import { IUser } from "./databaseTypes"
 
 export interface ICredentials {
   email: string,
@@ -7,7 +7,7 @@ export interface ICredentials {
 }
 
 export interface IJwt {
-  id: IUsers["id"], 
-  email: IUsers['email'], 
-  status: IUsers['status']
+  id: IUser["id"], 
+  email: IUser['email'], 
+  status: IUser['status']
 }
