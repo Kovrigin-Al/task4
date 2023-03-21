@@ -32,9 +32,11 @@ export class LoginController {
     }
 
     static #handleCorrectCredentials() {
-        if (LoginController.foundUser && LoginController.isPasswordCorrect) {
+        if (LoginController.foundUser && LoginController.isPasswordCorrect && LoginController.foundUser.status === 'active') {
             const { id, email, status } = LoginController.foundUser;
             AuthController.sendJwtWithStatus(LoginController.res, { id, email, status }, HTTP_STATUS.OK_200);
+        } else if (LoginController.foundUser?.status === 'blocked') { 
+            LoginController.next(ErrorResponse.createForbiddenError('User is blocked'))
         }
     }
 
@@ -61,16 +63,15 @@ export class LoginController {
     }
 
     static async #verifyEmail() {
-        const foundUser = (await Users.findOne({ where: { email: LoginController.req.body.email } }))
-            ?.get(({ plain: true }));
-        LoginController.#setFoundUser(foundUser);
+        const foundUser = (await Users.findOne({ where: { email: LoginController.req.body.email } }));
+        LoginController.#setFoundUser(foundUser?.get(({ plain: true })));
     }
 
     static async #verifyPassword() {
         if (LoginController.foundUser === undefined) return
         LoginController.#setIsPasswordCorrect(
             await bcrypt.compare(LoginController.req.body.password, LoginController.foundUser.password)
-            );
+        );
         LoginController.#setLoginDate();
     }
 

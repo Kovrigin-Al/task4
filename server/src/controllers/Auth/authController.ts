@@ -5,6 +5,9 @@ import { NextFunction, Request, Response } from "express";
 import { HTTP_STATUS } from "../../types/consts/httpStatuses";
 import { ErrorResponse } from "../errorController";
 import { IJwt } from "../../types/apiTypes";
+import { UserCreationAttributes, Users } from "../../models/usersModel";
+import { Model, where } from "sequelize";
+import { IUser } from "../../types/databaseTypes";
 
 export class AuthController {
   static setRegistrationValidation() {

@@ -54,7 +54,6 @@ describe("/users", () => {
             registration_time: userCreated.registration_time,
             status: userCreated.status,
         });
-
     })
 
     it("should return 204", async () => {
@@ -76,4 +75,12 @@ describe("/users", () => {
             .send({ email: userCreated.email, password: testPassword })
             .expect(HTTP_STATUS.NOT_FOUND_404);
     })
+
+    it("should return 404 and\'This user has been deleted\'", async () => {
+        const response = await request(app)
+            .get(ROUTES.USERS)
+            .set("Authorization", `Bearer ${freshToken}`)
+            .expect(HTTP_STATUS.NOT_FOUND_404);
+        expect(response.body.message).toMatch('This user has been deleted')
+    });
 })
