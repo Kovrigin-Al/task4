@@ -33,7 +33,7 @@ describe("/users", () => {
 
     it("should return updated users array and 200", async () => {
         const response = await request(app)
-            .post(ROUTES.USERS)
+            .put(ROUTES.USERS)
             .set("Authorization", `Bearer ${freshToken}`)
             .send({
                 users: [{

@@ -17,6 +17,8 @@ export class UsersController {
     };
 
     static async updateUsers(req: Request<{}, {}, { users: IUser[] }>, res: Response, next: NextFunction) {
+        console.log(req)
+        if (!req.body.users) return next(ErrorResponse.createBadRequestError('No users has been received'))
         UsersController.#initFields(req, res, next);
         const updatedUsers = await UsersController.#updateUsersRecords(req.body.users);
         res.status(HTTP_STATUS.OK_200).json(UsersController.#formatUsers(updatedUsers));

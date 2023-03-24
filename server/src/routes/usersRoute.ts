@@ -5,5 +5,5 @@ import { checkToken } from '../middleware/checkToken'
 export const router = Router();
 
 router.get('/', checkToken, UsersController.getAllUsers);
-router.post('/', checkToken, UsersController.updateUsers);
+router.put('/', checkToken, UsersController.updateUsers);
 router.delete('/', checkToken, UsersController.deleteUsers);

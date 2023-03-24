@@ -91,11 +91,9 @@ describe("/login", () => {
             .then(createdUser => createdUser?.save())
             .then(async createdUser => {
                 const blockedUser = createdUser?.get({ plain: true })
-                console.log('blockedUser', blockedUser)
                 const response = await request(app).post(ROUTES.LOGIN)
                     .send({ email: testEmail, password: testPassword })
                     .expect(HTTP_STATUS.FORBIDDEN_403);
-                console.log(response.body);
                 expect(response.body.message).toMatch('User is blocked')
                 return createdUser
             })
