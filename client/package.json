@@ -9,12 +9,24 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.13",
+    "@heroicons/react": "^2.0.16",
+    "formik": "^2.2.9",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.21",
+    "mobx": "^6.8.0",
+    "mobx-react-lite": "^3.4.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "react-table": "^7.8.0"
   },
   "devDependencies": {
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.15.5",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "@types/react-table": "^7.7.14",
     "@vitejs/plugin-react": "^3.1.0",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
